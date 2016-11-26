@@ -1,0 +1,25 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Plugins/iTweenBuilder.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Main.cs" Line="61" Column="3" />
+      <File FileName="Assets/StreamingAssets/main.lua" Line="1" Column="1" />
+      <File FileName="Assets/StreamingAssets/run1.lua" Line="1" Column="1" />
+      <File FileName="Assets/StreamingAssets/run2.lua" Line="1" Column="1" />
+      <File FileName="Assets/iTweenEditor/Examples/StartAndStopTween.cs" Line="18" Column="3" />
+      <File FileName="Assets/iTweenEditor/Helper Classes/EventParamMappings.cs" Line="39" Column="77" />
+      <File FileName="Assets/Scripts/Utils.cs" Line="34" Column="42" />
+      <File FileName="Assets/iTweenEditor/iTweenEvent.cs" Line="148" Column="18" />
+      <File FileName="Assets/iTweenEditor/iTweenPath.cs" Line="1" Column="1" />
+      <File FileName="Assets/iTweenEditor/Helper Classes/Vector3OrTransform.cs" Line="31" Column="2" />
+      <File FileName="Assets/iTweenEditor/Helper Classes/Vector3OrTransformArray.cs" Line="1" Column="1" />
+      <File FileName="Assets/iTweenEditor/Editor/iTweenEventDataEditor.cs" Line="349" Column="8" />
+      <File FileName="Assets/iTweenEditor/iTween.cs" Line="1347" Column="20" />
+      <File FileName="Assets/Plugins/iTweenBuilder.cs" Line="5" Column="5" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

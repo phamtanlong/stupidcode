@@ -1,2 +1,0 @@
-# moonsharp
-Demo moonsharp library

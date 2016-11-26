@@ -1,4 +1,17 @@
-﻿print('Event')
+﻿print('@main')
+
+
+
+local temp = iTweenEvent.__new()
+local iTweenEvent_Type = temp.getType ()
+
+local cube = GameObject.find ("Cube")
+
+iTween.moveTo(cube, iTween.hash("position", Vector3.__new(0,13,0), "time", 1, "looptype", "pingPong"))
+
+
+
+--[[
 
 cube = GameObject.createPrimitive (PrimitiveType.Cube)
 
@@ -24,3 +37,4 @@ cubeWatcher.onDisableHappend.add (handleOnDisable)
 cubeWatcher.onEnableHappend.add (handleOnEnable)
 
 
+--]]

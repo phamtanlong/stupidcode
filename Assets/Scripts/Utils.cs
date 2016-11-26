@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Xml.Serialization;
+using UnityEngine.UI;
 
 public class Utils : SingletonMono<Utils>
 {
@@ -35,19 +36,27 @@ public class Utils : SingletonMono<Utils>
         }
     }
 
-    public static void RegisterType(Script script, Type type)
+    public static void RegisterType(Script script, Type type, bool registerType = false)
     {
         UserData.RegisterType(type);
         script.Globals[type.Name] = UserData.CreateStatic(type);
+        if (registerType)
+        {
+            script.Globals[type.Name + "_Type"] = DynValue.FromObject(script, type);
+        }
     }
 
-    public static void RegisterType(Script script, string strType)
+    public static void RegisterType(Script script, string strType, bool registerType = false)
     {
         Type type = Type.GetType(strType);
         if (type != null)
         {
             UserData.RegisterType(type);
             script.Globals[type.Name] = UserData.CreateStatic(type);
+            if (registerType)
+            {
+                script.Globals[type.Name + "_Type"] = DynValue.FromObject(script, type);
+            }
         }
         else
         {
@@ -64,22 +73,21 @@ public class Utils : SingletonMono<Utils>
         Assembly moonSharpAssem = Assembly.GetAssembly(typeof(Script));
         RegisterAssembly(script, moonSharpAssem);
 
-        foreach (Assembly assem in AppDomain.CurrentDomain.GetAssemblies())
-        {
-            string assemName = assem.GetName().ToString();
-            if (core && coreAssemblies.Contains(assemName))
-            {
-                RegisterAssembly(script, assem);
-            }
-            else if (unity && unityAssemblies.Contains(assemName))
-            {
-                RegisterAssembly(script, assem);
-            }
-            else if (current && currentAssemblies.Contains(assemName))
-            {
-                RegisterAssembly(script, assem);
-            } 
-        }
+        //current
+        Assembly currentAssem = Assembly.GetAssembly(typeof(Utils));
+        RegisterAssembly(script, currentAssem);
+
+        //unity core
+        Assembly unityCodeAssem = Assembly.GetAssembly(typeof(Vector3));
+        RegisterAssembly(script, unityCodeAssem);
+
+        //unity ui
+        Assembly unityUIAssem = Assembly.GetAssembly(typeof(Image));
+        RegisterAssembly(script, unityUIAssem);
+
+        //system core
+        RegisterType(script, typeof(Type), true);
+
     }
 
     #endregion
@@ -132,26 +140,6 @@ public class Utils : SingletonMono<Utils>
 
 
     #region Data
-
-    public static List<string> unityAssemblies = new List<string>()
-    { 
-        "UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-        "UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-    };
-
-    public static List<string> coreAssemblies = new List<string>()
-    { 
-        //"System.Configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
-        //"System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
-        //"System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
-        "mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
-    };
-
-    public static List<string> currentAssemblies = new List<string>()
-    { 
-        "Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-        //"Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-    };
 
     #endregion
 

@@ -11,17 +11,22 @@ using UnityEngine.EventSystems;
 
 public class Main : MonoBehaviour
 {
-    public string theYear = "2016";
     public InputField InpCode;
 
     private Script script;
 
     void Start () 
     {
+        //Script.DefaultOptions.DebugPrint = Debug.Log;
+        //script = new Script();
+
         script = Utils.GetNewInitedScript();
-        script.Globals["main"] = DynValue.FromObject (script, this);
-        Type t = typeof(Watcher);
-        script.Globals["Watcher_Type"] = DynValue.FromObject (script, t);
+        //script.Globals["main"] = DynValue.FromObject (script, this);
+        //Type t = typeof(Watcher);
+        //script.Globals["Watcher_Type"] = DynValue.FromObject (script, t);
+
+        //script.Globals["TestCode"] = (Func<string>)TestCode;
+        script.Globals["Add"] = (Func<int,int,int>)Add;
     }
 
     void Update()
@@ -45,8 +50,13 @@ public class Main : MonoBehaviour
         InpCode.OnPointerClick(new PointerEventData(EventSystem.current));
     }
 
+    public static int Add (int a, int b)
+    {
+        return a + b;
+    }
+
     [MenuItem("Jundat/Test Code")]
-    public static void TestCode () 
+    public static string TestCode () 
     {
         var go = GameObject.Find("Cube");
 
@@ -60,5 +70,7 @@ public class Main : MonoBehaviour
 //        it.enabled = true;
 //
         iTween.MoveTo(go, iTween.Hash("position", new Vector3(0,13,0), "time", 1, "looptype", "pingPong"));
+
+        return "ok";
     }
 }
